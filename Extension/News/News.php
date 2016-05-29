@@ -14,11 +14,7 @@ use Fraym\Block\BlockMetadata;
  * @package Extension\News
  * @Registry(
  * name="News",
- * description="Create news articles on your website.",
- * version="1.0.0",
- * author="Fraym.org",
- * website="http://www.fraym.org",
- * repositoryKey="FRAYM_EXT_NEWS",
+ * repositoryKey="fraym/news-extension",
  * entity={
  *      "\Fraym\Block\Entity\Extension"={
  *          {
