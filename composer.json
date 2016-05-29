@@ -1,0 +1,14 @@
+{
+    "name": "fraym/news-extension",
+    "type": "fraym-extension",
+    "description": "Create news articles on your website with Fraym CMS.",
+    "license": "GPL-2.0+",
+    "keywords": [
+        "fraym",
+        "news",
+        "extension"
+    ],
+    "require": {
+        "fraym/fraym": "^1.0"
+    }
+}
