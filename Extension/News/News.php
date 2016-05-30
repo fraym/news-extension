@@ -65,10 +65,6 @@ use Fraym\Block\BlockMetadata;
  *                   }
  *           }
  *       }
- * },
- * files={
- *      "Extension/News/",
- *      "Template/Default/Extension/News/"
  * }
  * )
  * @Injectable(lazy=true)
