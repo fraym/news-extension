@@ -17,6 +17,11 @@
         "news",
         "extension"
     ],
+    "autoload": {
+        "psr-4": {
+            "Extension\\News\\": "Extension/News/"
+        }
+    },
     "require": {
         "fraym/core": "^1.0.0"
     }
