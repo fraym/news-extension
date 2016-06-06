@@ -5,7 +5,7 @@
  * @copyright Dominik Weber <info@fraym.org>
  * @license   http://www.opensource.org/licenses/gpl-license.php GNU General Public License, version 2 or later (see the LICENSE file)
  */
-namespace Extension\News\Entity;
+namespace Fraym\Extension\News\Entity;
 
 use \Doctrine\ORM\Mapping as ORM;
 use Fraym\Annotation\FormField;
@@ -40,7 +40,7 @@ class Category extends \Fraym\Entity\BaseEntity
     protected $locale;
 
     /**
-     * @ORM\OneToMany(targetEntity="\Extension\News\Entity\News", mappedBy="categories", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="\Fraym\Extension\News\Entity\News", mappedBy="categories", fetch="EXTRA_LAZY")
      */
     protected $news;
 

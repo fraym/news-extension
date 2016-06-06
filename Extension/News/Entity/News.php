@@ -5,7 +5,7 @@
  * @copyright Dominik Weber <info@fraym.org>
  * @license   http://www.opensource.org/licenses/gpl-license.php GNU General Public License, version 2 or later (see the LICENSE file)
  */
-namespace Extension\News\Entity;
+namespace Fraym\Extension\News\Entity;
 
 use \Doctrine\ORM\Mapping as ORM;
 use Fraym\Annotation\FormField;
@@ -79,7 +79,7 @@ class News extends \Fraym\Entity\BaseEntity
     protected $created;
 
     /**
-     * @ORM\ManyToMany(targetEntity="\Extension\News\Entity\Category", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="\Fraym\Extension\News\Entity\Category", cascade={"persist"})
      * @FormField(label="Category", type="multiselect", createNewInline="name")
      */
     protected $categories;
@@ -91,7 +91,7 @@ class News extends \Fraym\Entity\BaseEntity
     protected $sites;
 
     /**
-     * @ORM\ManyToMany(targetEntity="\Extension\News\Entity\Tag", inversedBy="news", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="\Fraym\Extension\News\Entity\Tag", inversedBy="news", cascade={"persist"})
      * @FormField(label="Tags", type="multiselect", createNewInline="name")
      */
     protected $tags;
