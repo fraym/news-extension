@@ -5,13 +5,13 @@
  * @copyright Dominik Weber <info@fraym.org>
  * @license   http://www.opensource.org/licenses/gpl-license.php GNU General Public License, version 2 or later (see the LICENSE file)
  */
-namespace Extension\News;
+namespace Fraym\Extension\News;
 
 use \DI\Annotation\Inject;
 
 /**
  * Class NewsController
- * @package Extension\News
+ * @package Fraym\Extension\News
  * @Injectable(lazy=true)
  */
 class NewsController extends \Fraym\Core
@@ -32,7 +32,7 @@ class NewsController extends \Fraym\Core
      */
     public function getBlockConfig($blockConfig = null)
     {
-        $newsListItems = $this->db->getRepository('\Extension\News\Entity\News')->findAll();
+        $newsListItems = $this->db->getRepository('\Fraym\Extension\News\Entity\News')->findAll();
 
         $selectedNewsItems = isset($blockConfig->listItems) ? explode(',', $blockConfig->listItems) : [];
 

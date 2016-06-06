@@ -5,13 +5,13 @@
  * @copyright Dominik Weber <info@fraym.org>
  * @license   http://www.opensource.org/licenses/gpl-license.php GNU General Public License, version 2 or later (see the LICENSE file)
  */
-namespace Extension\News;
+namespace Fraym\Extension\News;
 
 use Fraym\Annotation\Registry;
 use Fraym\Block\BlockMetadata;
 
 /**
- * @package Extension\News
+ * @package Fraym\Extension\News
  * @Registry(
  * name="News",
  * repositoryKey="fraym/news-extension",
@@ -20,7 +20,7 @@ use Fraym\Block\BlockMetadata;
  *          {
  *           "name"="News",
  *           "description"="Create news articles on your website.",
- *           "class"="\Extension\News\News",
+ *           "class"="\Fraym\Extension\News\News",
  *           "configMethod"="getBlockConfig",
  *           "execMethod"="execBlock",
  *           "saveMethod"="saveBlockConfig",
@@ -29,7 +29,7 @@ use Fraym\Block\BlockMetadata;
  *      },
  *      "\Fraym\EntityManager\Entity\Entity"={
  *          {
- *           "className"="\Extension\News\Entity\News",
+ *           "className"="\Fraym\Extension\News\Entity\News",
  *           "name"="News entry",
  *           "group"={
  *                      "\Fraym\EntityManager\Entity\Group"={
@@ -38,7 +38,7 @@ use Fraym\Block\BlockMetadata;
  *                   }
  *           },
  *           {
- *           "className"="\Extension\News\Entity\Category",
+ *           "className"="\Fraym\Extension\News\Entity\Category",
  *           "name"="News category",
  *           "group"={
  *                      "\Fraym\EntityManager\Entity\Group"={
@@ -47,7 +47,7 @@ use Fraym\Block\BlockMetadata;
  *                   }
  *           },
  *           {
- *           "className"="\Extension\News\Entity\Tag",
+ *           "className"="\Fraym\Extension\News\Entity\Tag",
  *           "name"="News tag",
  *           "group"={
  *                      "\Fraym\EntityManager\Entity\Group"={
@@ -56,7 +56,7 @@ use Fraym\Block\BlockMetadata;
  *                   }
  *           },
  *           {
- *           "className"="\Extension\News\Entity\Test",
+ *           "className"="\Fraym\Extension\News\Entity\Test",
  *           "name"="Test",
  *           "group"={
  *                      "\Fraym\EntityManager\Entity\Group"={
@@ -68,14 +68,14 @@ use Fraym\Block\BlockMetadata;
  * }
  * )
  * @Injectable(lazy=true)
- * @Fraym\Annotation\Route({"Extension\News\News": "newsRouteCheck"}, name="newsRouteCheck")
- * @Fraym\Annotation\Route({"Extension\News\News": "newsListRouteCheck"}, name="newsListRouteCheck")
+ * @Fraym\Annotation\Route({"Fraym\Extension\News\News": "newsRouteCheck"}, name="newsRouteCheck")
+ * @Fraym\Annotation\Route({"Fraym\Extension\News\News": "newsListRouteCheck"}, name="newsListRouteCheck")
  */
 class News
 {
     /**
      * @Inject
-     * @var \Extension\News\NewsController
+     * @var \Fraym\Extension\News\NewsController
      */
     protected $newsController;
 
@@ -217,7 +217,7 @@ class News
     {
         $slug = $this->route->getAddionalURI();
         $newsId = intval(substr($slug, strrpos($slug, '-') + 1));
-        return $this->db->getRepository('\Extension\News\Entity\News')->findOneById($newsId);
+        return $this->db->getRepository('\Fraym\Extension\News\Entity\News')->findOneById($newsId);
     }
 
     /**
@@ -235,7 +235,7 @@ class News
 
         $newsItems = $qb
             ->select("n")
-            ->from('\Extension\News\Entity\News', 'n')
+            ->from('\Fraym\Extension\News\Entity\News', 'n')
             ->leftJoin(
                 'n.sites',
                 's',
@@ -317,7 +317,7 @@ class News
             $categories = $this->db
                 ->createQueryBuilder()
                 ->select("c")
-                ->from('\Extension\News\Entity\Category', 'c')
+                ->from('\Fraym\Extension\News\Entity\Category', 'c')
                 ->join('c.news', 'n')
                 ->leftJoin('n.sites', 's')
                 ->where("s = :site OR n.sites IS EMPTY")
@@ -331,7 +331,7 @@ class News
             $tags = $this->db
                 ->createQueryBuilder()
                 ->select("t")
-                ->from('\Extension\News\Entity\Tag', 't')
+                ->from('\Fraym\Extension\News\Entity\Tag', 't')
                 ->join('t.news', 'n')
                 ->leftJoin('n.sites', 's')
                 ->where("s = :site OR n.sites IS EMPTY")
@@ -423,7 +423,7 @@ class News
         $news->tags->clear();
 
         foreach ($tags as $tag) {
-            $newTag = $this->db->getRepository('\Extension\News\Entity\Tag')->findOneByName($tag);
+            $newTag = $this->db->getRepository('\Fraym\Extension\News\Entity\Tag')->findOneByName($tag);
 
             if (!$newTag) {
                 $newTag = new \Extension\News\Entity\Tag();
