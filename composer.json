@@ -19,7 +19,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Extension\\News\\": "Extension/News/"
+            "Fraym\\Extension\\News\\": "Extension/News/"
         }
     },
     "require": {
