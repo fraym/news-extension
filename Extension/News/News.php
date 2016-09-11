@@ -165,18 +165,15 @@ class News
      */
     public function newsRouteCheck()
     {
-        $url = str_ireplace($this->route->getFoundURI(), '', $this->route->getSiteBaseURI());
-        // Allow news detail only on sub pages
-        if ($url !== '') {
-            $newsItem = $this->getCurrentNewsItem();
-            if ($newsItem) {
-                $slugTitle = $this->route->createSlug($newsItem->title);
-                $fullSlug = "$slugTitle-" . $newsItem->id;
-                if (ltrim($this->route->getAddionalURI(), '/') === $fullSlug) {
-                    return true;
-                }
+        $newsItem = $this->getCurrentNewsItem();
+        if ($newsItem) {
+            $slugTitle = $this->route->createSlug($newsItem->title);
+            $fullSlug = "$slugTitle-" . $newsItem->id;
+            if (ltrim($this->route->getAddionalUri(), '/') === $fullSlug) {
+                return true;
             }
         }
+
         return false;
     }
 
@@ -185,13 +182,11 @@ class News
      */
     public function newsListRouteCheck()
     {
-        $url = str_ireplace($this->route->getFoundURI(), '', $this->route->getSiteBaseURI());
-        if ($url !== '') {
-            $filter = $this->getNewsListFilter();
-            if ($filter) {
-                return true;
-            }
+        $filter = $this->getNewsListFilter();
+        if ($filter) {
+            return true;
         }
+
         return false;
     }
 
@@ -200,7 +195,7 @@ class News
      */
     protected function getNewsListFilter()
     {
-        $slug = $this->route->getAddionalURI();
+        $slug = $this->route->getAddionalUri();
         $slug = array_reverse(explode('/', $slug));
         if (isset($slug[0]) && isset($slug[1])) {
             if ($slug[1] === 'c' || $slug[1] === 't' || $slug[1] === 'page') {
@@ -215,7 +210,7 @@ class News
      */
     public function getCurrentNewsItem()
     {
-        $slug = $this->route->getAddionalURI();
+        $slug = $this->route->getAddionalUri();
         $newsId = intval(substr($slug, strrpos($slug, '-') + 1));
         return $this->db->getRepository('\Fraym\Extension\News\Entity\News')->findOneById($newsId);
     }
@@ -465,16 +460,5 @@ class News
             );
         }
         return [];
-    }
-
-    /**
-     * @param $menuItemTranslation
-     * @return BlockMetadata
-     */
-    public function getBlockMetadata(\Fraym\Menu\Entity\MenuItemTranslation $menuItemTranslation)
-    {
-        $metaData = new BlockMetadata();
-        // TODO: Get news uris and add it to the block meta data object
-        return $metaData;
     }
 }

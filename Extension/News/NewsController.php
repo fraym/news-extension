@@ -93,6 +93,7 @@ class NewsController extends \Fraym\Core
                     return '';
                 }
             }
+            return $match[0];
         }, $source);
 
         $url = $this->route->getRequestRoute(false, false, true);
